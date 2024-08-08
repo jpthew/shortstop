@@ -1,5 +1,5 @@
 # Shortstop
-![](https://github.com/jpthew/shortstop/catchit.gif)
+![](./catchit.gif)
 
 This project provides a secure way to exfiltrate data using RSA encryption. The main module, `server.py`, handles the decryption of incoming data, while `client.py` demonstrates how to properly communicate with the server.
 
