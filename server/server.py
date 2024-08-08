@@ -14,9 +14,14 @@ The data is decrypted using the RSA private key, and the decrypted data is writt
 import threading
 import time
 import datetime
+import sys
 from flask import Flask, request, Response, abort
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from cryptography.hazmat.primitives import hashes, serialization
+
+sys.path.append('../')
+
+from modules.crypto_utils import oaep_padding
 
 
 app = Flask(__name__)
@@ -139,11 +144,7 @@ def decrypt_data(encrypted_data):
     try:
         decrypted_data = private_key.decrypt(
             encrypted_data,
-            padding.OAEP(
-                mgf=padding.MGF1(algorithm=hashes.SHA256()),
-                algorithm=hashes.SHA256(),
-                label=None
-            )
+            oaep_padding()
         )
     except ValueError as e:
         raise e

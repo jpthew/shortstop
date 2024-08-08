@@ -14,6 +14,7 @@ Usage:
 """
 
 import requests
+from modules.crypto_utils import oaep_padding
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import hashes, serialization
 
@@ -63,11 +64,7 @@ def encrypt_data(data):
     try:
         encrypted_data = public_key.encrypt(
             data,
-            padding.OAEP(
-                mgf=padding.MGF1(algorithm=hashes.SHA256()),
-                algorithm=hashes.SHA256(),
-                label=None
-            )
+            oaep_padding()
         )
     except ValueError as e:
         raise e
