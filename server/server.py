@@ -156,7 +156,8 @@ def decrypt_view():
     Decrypt the encrypted data and write it to a log file.
     
     This function decrypts the encrypted data in the request body using the RSA
-    private key and writes the decrypted data to a log file.
+    private key and writes the decrypted data to a log file. Requires
+    the User-Agent header to be set to specific value.
     
     Returns:
         Response: A Flask Response object with status code 200.
@@ -184,7 +185,8 @@ def get_public_key():
     """
     Return the RSA public key in PEM format.
     
-    This function returns the RSA public key in PEM format.
+    This function returns the RSA public key in PEM format. Requires
+    the User-Agent header to be set to specific value.
     
     Returns:
         tuple: A tuple containing the RSA public key in PEM format, status code 200,

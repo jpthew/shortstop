@@ -14,6 +14,7 @@ Usage:
 """
 
 import requests
+import sys
 from modules.crypto_utils import oaep_padding
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import hashes, serialization
@@ -23,7 +24,7 @@ def get_rsa_pub_key(url: str="http://localhost:8000/api/v1/public_key", timeout:
     Retrieves the RSA public key from the specified URL.
 
     This function sends an HTTP GET request to the specified URL to retrieve the
-    RSA public key.
+    RSA public key. If except, it will exit the program. Ensure useragent is set.
 
     Args:
         url (str): The URL to send the HTTP GET request to.
@@ -37,8 +38,13 @@ def get_rsa_pub_key(url: str="http://localhost:8000/api/v1/public_key", timeout:
 
     """
     try:
-        response = requests.get(url, timeout=timeout)
+        headers = {
+            'User-Agent': 'SpecificUserAgent'
+        }
+        response = requests.get(url, timeout=timeout, headers=headers)
         return response.content
+    except requests.exceptions.ConnectionError as e:
+        sys.exit(1)
     except requests.exceptions.RequestException as e:
         raise e
 
@@ -58,9 +64,12 @@ def encrypt_data(data):
     Raises:
         ValueError: An error occurred while encrypting the data
     """
-    public_key = serialization.load_pem_public_key(
-        get_rsa_pub_key()
-    )
+    try:
+        public_key = serialization.load_pem_public_key(
+            get_rsa_pub_key()
+        )
+    except ValueError as e:
+        sys.exit(1)
     try:
         encrypted_data = public_key.encrypt(
             data,
@@ -99,4 +108,5 @@ def sendit(raw):
     return response
 
 if __name__ == "__main__":
-    print(sendit(b"testing1234"))
+    sendit(b"testing1234")
+    # print(sendit(b"testing1234")) # Uncomment this line to print the response content
