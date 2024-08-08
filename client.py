@@ -13,11 +13,10 @@ Usage:
     Run this module directly to test the sendit function with sample data.
 """
 
-import requests
 import sys
+import requests
+from cryptography.hazmat.primitives import serialization
 from modules.crypto_utils import oaep_padding
-from cryptography.hazmat.primitives.asymmetric import padding
-from cryptography.hazmat.primitives import hashes, serialization
 
 def get_rsa_pub_key(url: str="http://localhost:8000/api/v1/public_key", timeout: int=5):
     """
@@ -43,7 +42,7 @@ def get_rsa_pub_key(url: str="http://localhost:8000/api/v1/public_key", timeout:
         }
         response = requests.get(url, timeout=timeout, headers=headers)
         return response.content
-    except requests.exceptions.ConnectionError as e:
+    except requests.exceptions.ConnectionError:
         sys.exit(1)
     except requests.exceptions.RequestException as e:
         raise e
@@ -68,7 +67,7 @@ def encrypt_data(data):
         public_key = serialization.load_pem_public_key(
             get_rsa_pub_key()
         )
-    except ValueError as e:
+    except ValueError:
         sys.exit(1)
     try:
         encrypted_data = public_key.encrypt(

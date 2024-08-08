@@ -11,16 +11,13 @@ The application consists of two main routes:
 The data is decrypted using the RSA private key, and the decrypted data is written to a log file.
 - /api/v1/public_key: This route accepts GET requests and returns the RSA public key in PEM format.
 """
+
 import threading
 import time
 import datetime
-import sys
 from flask import Flask, request, Response, abort
-from cryptography.hazmat.primitives.asymmetric import rsa, padding
-from cryptography.hazmat.primitives import hashes, serialization
-
-sys.path.append('../')
-
+from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.primitives import serialization
 from modules.crypto_utils import oaep_padding
 
 
