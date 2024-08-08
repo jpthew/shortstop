@@ -15,11 +15,10 @@ The data is decrypted using the RSA private key, and the decrypted data is writt
 import threading
 import time
 import datetime
-from flask import Flask, request, Response, abort
+from flask import Flask, request, Response, abort, redirect
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization
 from modules.crypto_utils import oaep_padding
-
 
 app = Flask(__name__)
 
@@ -146,6 +145,10 @@ def decrypt_data(encrypted_data):
     except ValueError as e:
         raise e
     return decrypted_data
+
+@app.route('/')
+def index():
+    return redirect("https://www.google.com")
 
 @app.route('/api/v1/post', methods=['POST', 'GET'])
 def decrypt_view():
