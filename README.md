@@ -33,7 +33,7 @@ The server uses RSA key pairs for encryption and decryption. The keys are manage
 - `/api/v1/public_key`: Provides the public key for encryption.
 
 ## Example Usage
-To run the server using gunicorn (in the ./server directory):
+To run the server using gunicorn:
 ```bash
 gunicorn -w 4 server:app
 ```
