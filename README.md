@@ -2,6 +2,7 @@
 ![](./catchit.gif)
 
 This project provides a secure way to exfiltrate data using RSA encryption. 
+POC tooling that can be refanged. Stay tuned for private repo with tradecraft.
 
 [![GPLv3](https://img.shields.io/badge/License-GPLv3-brightgreen.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![Pylint](https://github.com/jpthew/shortstop/actions/workflows/pylint.yml/badge.svg?branch=main)

@@ -148,6 +148,12 @@ def decrypt_data(encrypted_data):
 
 @app.route('/')
 def index():
+    """
+    Redirects for the persistent bots
+    
+    Returns:
+        Response: A Flask Response object with a redirect to Google.
+    """
     return redirect("https://www.google.com")
 
 @app.route('/api/v1/post', methods=['POST', 'GET'])
