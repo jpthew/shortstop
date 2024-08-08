@@ -1,10 +1,17 @@
 # Shortstop
 ![](./catchit.gif)
 
-This project provides a secure way to exfiltrate data using RSA encryption. The main module, `server.py`, handles the decryption of incoming data, while `client.py` demonstrates how to properly communicate with the server.
+This project provides a secure way to exfiltrate data using RSA encryption. 
+
+[![GPLv3](https://img.shields.io/badge/License-GPLv3-brightgreen.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Python3.8](https://github.com/jpthew/shortstop/actions/workflows/pylint.yml/badge.svg?branch=main&event=push&matrix.python-version=3.8)]
+[![Python3.9](https://github.com/jpthew/shortstop/actions/workflows/pylint.yml/badge.svg?branch=main&event=push&matrix.python-version=3.9)]
+[![Python3.10](https://github.com/jpthew/shortstop/actions/workflows/pylint.yml/badge.svg?branch=main&event=push&matrix.python-version=3.10)]
+[![Python3.11](https://github.com/jpthew/shortstop/actions/workflows/pylint.yml/badge.svg?branch=main&event=push&matrix.python-version=3.11)]
+[![Python3.12](https://github.com/jpthew/shortstop/actions/workflows/pylint.yml/badge.svg?branch=main&event=push&matrix.python-version=3.12)]
 
 ## Prerequisites
-- Python 3.x
+- Python 3
 - Flask
 - cryptography library
 - gunicorn
